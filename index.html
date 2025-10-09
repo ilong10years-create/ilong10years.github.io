@@ -1,0 +1,40 @@
+<!DOCTYPE html> <!-- 声明这是HTML5文档，必须放在第一行 -->
+<html lang="zh-CN"> <!-- 网页语言为中文 -->
+<head>
+  <meta charset="UTF-8"> <!-- 字符编码，确保中文显示不乱码 -->
+  <!-- 自适应配置：让网页在手机上正常缩放，PDF「Adaptive」章节核心设置 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的主页</title> <!-- 网页标题，会显示在浏览器标签上 -->
+  <!-- 关联CSS样式文件：告诉HTML去哪里找样式，对应PDF「CSS versions」章节的样式分离原则 -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 页头：存放导航、Logo，PDF语义化标签 <header> -->
+  <header>
+    <!-- 导航栏：存放页面跳转链接，PDF语义化标签 <nav> -->
+    <nav>
+      <ul> <!-- 无序列表，用于排列导航项 -->
+        <li><a href="index.html">首页</a></li> <!-- 跳转到首页 -->
+        <li><a href="#">关于我</a></li> <!-- # 表示暂时不跳转，后续可补充链接 -->
+        <li><a href="contacts.html">联系我们</a></li> <!-- 跳转到联系页，后续会创建 -->
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 主内容区：网页核心内容，唯一且不重复，PDF语义化标签 <main> -->
+  <main>
+    <!-- 主题区块：把相关内容分组，PDF语义化标签 <section> -->
+    <section>
+      <h2>欢迎访问我的第一个网站！</h2> <!-- 二级标题，页面主要标题 -->
+      <p>这是用HTML5和CSS3做的自适应主页，在手机、平板、电脑上都能正常显示～</p>
+      <!-- 可添加图片（可选）：需先在根目录新建“images”文件夹，放入图片并改名为“home-img.jpg” -->
+      <img src="images/home-img.jpg" alt="网站展示图" style="width:100%;max-width:800px;margin-top:1rem;">
+    </section>
+  </main>
+
+  <!-- 页脚：存放版权、联系方式，PDF语义化标签 <footer> -->
+  <footer>
+    <p>© 2024 我的第一个网站 版权所有</p>
+  </footer>
+</body>
+</html>

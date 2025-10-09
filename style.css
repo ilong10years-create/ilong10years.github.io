@@ -1,0 +1,99 @@
+/* 1. 重置样式：消除不同浏览器的默认边距/间距，解决跨浏览器兼容问题（PDF「Cross-browser issue」推荐） */
+* {
+  margin: 0; /* 清除默认外边距 */
+  padding: 0; /* 清除默认内边距 */
+  box-sizing: border-box; /* 让元素的宽高包含边框和内边距，避免计算混乱 */
+}
+
+/* 2. 基础样式：定义页面通用样式 */
+body {
+  font-family: "微软雅黑", Arial, sans-serif; /* 网页字体，优先用微软雅黑，没有则用Arial */
+  line-height: 1.6; /* 行高，让文字更易读 */
+  color: #333; /* 文字颜色（深灰色，比黑色柔和） */
+  background-color: #f9f9f9; /* 网页背景色（浅灰色，避免纯白刺眼） */
+}
+
+/* 页头样式 */
+header {
+  background-color: #2c3e50; /* 导航栏背景色（深蓝色） */
+  color: white; /* 导航栏文字颜色（白色） */
+  padding: 1rem; /* 内边距：上下左右各1个单位（1rem≈16px） */
+}
+
+/* 导航栏列表样式 */
+nav ul {
+  list-style: none; /* 清除列表默认的圆点 */
+  display: flex; /* 让列表项横向排列（桌面端） */
+  gap: 2rem; /* 列表项之间的间距（2rem≈32px） */
+  justify-content: center; /* 让导航栏整体居中 */
+}
+
+/* 导航栏链接样式 */
+nav a {
+  color: white; /* 链接文字颜色 */
+  text-decoration: none; /* 清除链接默认的下划线 */
+  font-size: 1.1rem; /* 字体大小 */
+}
+
+/* 导航栏链接 hover 效果：鼠标放上去时变化 */
+nav a:hover {
+  color: #3498db; /* 文字变浅蓝色 */
+  text-decoration: underline; /* 显示下划线 */
+}
+
+/* 主内容区样式 */
+main {
+  max-width: 1200px; /* 主内容区最大宽度（避免在大屏上拉得太宽） */
+  margin: 2rem auto; /* 上下边距2rem，左右自动（实现居中） */
+  padding: 0 1rem; /* 左右内边距1rem（小屏时避免内容贴边） */
+}
+
+/* 主题区块样式（用CSS3的圆角和阴影，PDF「What CSS3 gives us」章节） */
+section {
+  background-color: white; /* 区块背景色（白色） */
+  padding: 2rem; /* 区块内边距 */
+  border-radius: 8px; /* 圆角（8px，数值越大角越圆） */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 阴影：水平偏移0、垂直偏移2px、模糊10px、透明度0.1（让区块有立体感） */
+  text-align: center; /* 区块内文字居中 */
+}
+
+/* 标题样式 */
+section h2 {
+  color: #2c3e50; /* 标题颜色（和导航栏一致） */
+  margin-bottom: 1rem; /* 标题下方间距 */
+  font-size: 1.8rem; /* 标题字体大小 */
+}
+
+/* 段落样式 */
+section p {
+  font-size: 1.1rem; /* 段落字体大小 */
+  margin-bottom: 1.5rem; /* 段落下方间距 */
+}
+
+/* 3. 自适应媒体查询：针对小屏幕（手机）的样式调整（PDF「Adaptive」核心） */
+@media (max-width: 768px) { /* 当屏幕宽度≤768px（手机横屏及以下）时，以下样式生效 */
+  /* 导航栏列表改为纵向排列 */
+  nav ul {
+    flex-direction: column; /* 纵向排列 */
+    gap: 1rem; /* 间距缩小到1rem */
+  }
+
+  /* 主内容区上下边距缩小 */
+  main {
+    margin: 1rem auto;
+  }
+
+  /* 标题字体缩小（避免小屏上标题太占空间） */
+  section h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* 4. 页脚样式 */
+footer {
+  background-color: #2c3e50; /* 和导航栏同色，保持风格统一 */
+  color: white; /* 文字白色 */
+  text-align: center; /* 文字居中 */
+  padding: 1.5rem; /* 内边距 */
+  margin-top: 2rem; /* 上方间距（和主内容区分开） */
+}
