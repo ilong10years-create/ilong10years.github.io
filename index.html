@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🔮 K-pop 男友测试 🔮</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(145deg, #f9eef7 0%, #fce4ec 100%);
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 650px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 48px;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.2);
+            padding: 2rem 1.8rem;
+            transition: all 0.3s ease;
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.9rem;
+            color: #d63384;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .sub {
+            text-align: center;
+            color: #b56576;
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .question {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ffcdd2;
+            padding-bottom: 1.2rem;
+        }
+        .question h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2d3e50;
+        }
+        .option {
+            display: block;
+            background: #fef2f2;
+            margin: 0.6rem 0;
+            padding: 0.8rem 1rem;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #ffcdd2;
+            font-weight: 500;
+        }
+        .option:hover {
+            background: #ffe0e7;
+            transform: scale(1.01);
+        }
+        input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.1);
+            accent-color: #d63384;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 2rem auto 0;
+            background: #d63384;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .btn:hover {
+            background: #b02a6e;
+            transform: scale(1.02);
+        }
+        .result-card {
+            text-align: center;
+        }
+        .result-card h2 {
+            font-size: 2rem;
+            color: #d63384;
+            margin: 0.5rem 0;
+        }
+        .group-badge {
+            background: #f0c4d3;
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+        .desc {
+            font-size: 1.1rem;
+            background: #fff0f5;
+            padding: 1rem;
+            border-radius: 28px;
+            margin: 1rem 0;
+            color: #3b2e3e;
+        }
+        .warning {
+            font-size: 0.75rem;
+            color: #a0a0a0;
+            margin-top: 1.5rem;
+        }
+        .retry {
+            background: #6c757d;
+            margin-top: 1rem;
+        }
+        .retry:hover {
+            background: #565e64;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: #b89a9a;
+        }
+        @media (max-width: 500px) {
+            .quiz-container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .question h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="quiz-container" id="app">
+    <!-- 动态内容由vue或原生js渲染，这里用原生js -->
+</div>
+
+<script>
+    // ---------- 所有男友数据 ----------
+    const boyfriends = [
+        // NCT WISH (6人)
+        { name: "Sion", group: "NCT WISH", desc: "温柔如水的队长，但会半夜给你发冷笑话，你只能尬笑。" },
+        { name: "Riku", group: "NCT WISH", desc: "运动全能，第一次约会带你跑5公里，你差点报警。" },
+        { name: "Yushi", group: "NCT WISH", desc: "时尚达人，强行帮你搭配衣服，最后你像个彩虹糖。" },
+        { name: "Jaehee", group: "NCT WISH", desc: "厨艺大师，但只会做拉面，连吃一周你开始怀念泡面。" },
+        { name: "Ryo", group: "NCT WISH", desc: "游戏宅，为了打排位忘记约会，你怒删他游戏账号。" },
+        { name: "Sakuya", group: "NCT WISH", desc: "猫奴，你吃醋猫比你还受宠，他让你学猫叫。" },
+        // BIGBANG (5人)
+        { name: "G-Dragon", group: "BIGBANG", desc: "时尚教父，你的工资全用来买他同款，月底吃土。" },
+        { name: "T.O.P", group: "BIGBANG", desc: "艺术收藏家，家里全是奇怪艺术品，你去他家以为进了博物馆。" },
+        { name: "Taeyang", group: "BIGBANG", desc: "浪漫情歌王，但唱歌跑调，邻居投诉噪音。" },
+        { name: "Daesung", group: "BIGBANG", desc: "开心果，笑点低到地板，你讲冷笑话他能笑三天。" },
+        { name: "Seungri", group: "BIGBANG", desc: "（平行宇宙版）商业天才，但总想拉你投资微商。" },
+        // EXO (9人)
+        { name: "Xiumin", group: "EXO", desc: "童颜大哥，去酒吧被查身份证，你被当成他姐姐。" },
+        { name: "Suho", group: "EXO", desc: "富二代，但抠门到约会吃路边摊，还让你AA。" },
+        { name: "Lay", group: "EXO", desc: "工作狂，恋爱全靠视频通话，你像跟手机谈恋爱。" },
+        { name: "Baekhyun", group: "EXO", desc: "话痨，你耳朵起茧，分手后你反而觉得世界太安静。" },
+        { name: "Chen", group: "EXO", desc: "好爸爸型，但强迫你学习带娃技巧，你连夜逃跑。" },
+        { name: "Chanyeol", group: "EXO", desc: "身高差巨大，亲亲需要踩小板凳，你颈椎病加重。" },
+        { name: "D.O.", group: "EXO", desc: "厨艺大师，但禁止你进厨房，你失去了煮泡面的快乐。" },
+        { name: "Kai", group: "EXO", desc: "舞王，约会就是陪他练舞，你累到瘫痪。" },
+        { name: "Sehun", group: "EXO", desc: "傲娇毒舌，嘴上嫌弃你，实则偷偷看你手机。" },
+        // TREASURE (12人)
+        { name: "Choi Hyunsuk", group: "TREASURE", desc: "控制欲极强，你几点睡觉都要管，你失去自由。" },
+        { name: "Park Jihoon", group: "TREASURE", desc: "爱哭鬼，你随便一句话他就哭，你成安慰专家。" },
+        { name: "Yoshi", group: "TREASURE", desc: "日本武士风，带你吃寿司，但芥末放超多。" },
+        { name: "Kim Junkyu", group: "TREASURE", desc: "呆萌路痴，出门永远你导航，他像个孩子。" },
+        { name: "Mashiho", group: "TREASURE", desc: "元气少年，早上6点叫你晨跑，你恨闹钟。" },
+        { name: "Yoon Jaehyuk", group: "TREASURE", desc: "自拍狂魔，你丑照被他发网上，你社死。" },
+        { name: "Asahi", group: "TREASURE", desc: "艺术家，家里颜料满地，你的白衣服遭殃。" },
+        { name: "Bang Yedam", group: "TREASURE", desc: "音乐天才，但写的歌全是分手主题，你心虚。" },
+        { name: "Kim Doyoung", group: "TREASURE", desc: "撒娇怪，你鸡皮疙瘩掉一地，朋友以为你养了只猫。" },
+        { name: "Haruto", group: "TREASURE", desc: "低音炮，说情话像念咒，你忍不住笑场。" },
+        { name: "Park Jeongwoo", group: "TREASURE", desc: "吃货，你工资全用来买零食，月月光。" },
+        { name: "So Junghwan", group: "TREASURE", desc: "幼稚鬼，抢你冰淇淋还吐舌头，你想打人。" }
+    ];
+
+    // 问题列表（5个有趣问题）
+    const questions = [
+        {
+            text: "周末你最喜欢？",
+            options: [
+                { text: "躺尸刷剧吃零食", match: "Yoshi" },
+                { text: "去健身房暴汗", match: "Riku" },
+                { text: "逛美术馆装文青", match: "T.O.P" },
+                { text: "夜店蹦迪到天亮", match: "G-Dragon" },
+                { text: "打游戏通宵", match: "Ryo" }
+            ]
+        },
+        {
+            text: "理想约会地点？",
+            options: [
+                { text: "高级米其林餐厅", match: "Suho" },
+                { text: "海边漫步", match: "Taeyang" },
+                { text: "游乐园疯玩", match: "Mashiho" },
+                { text: "家里窝着", match: "Kai" },
+                { text: "录音室创作", match: "Bang Yedam" }
+            ]
+        },
+        {
+            text: "最受不了对方什么？",
+            options: [
+                { text: "控制欲太强", match: "Choi Hyunsuk" },
+                { text: "太粘人", match: "Kim Doyoung" },
+                { text: "工作狂", match: "Lay" },
+                { text: "幼稚", match: "So Junghwan" },
+                { text: "爱哭", match: "Park Jihoon" }
+            ]
+        },
+        {
+            text: "最爱看哪种电影？",
+            options: [
+                { text: "恐怖片", match: "Asahi" },
+                { text: "喜剧片", match: "Daesung" },
+                { text: "爱情片", match: "Chen" },
+                { text: "科幻片", match: "Haruto" },
+                { text: "纪录片", match: "Jaehee" }
+            ]
+        },
+        {
+            text: "你的理想型外貌？",
+            options: [
+                { text: "可爱童颜", match: "Xiumin" },
+                { text: "高冷模特脸", match: "Sehun" },
+                { text: "阳光运动型", match: "Chanyeol" },
+                { text: "温柔暖男", match: "Sion" },
+                { text: "混血异域风", match: "Yushi" }
+            ]
+        }
+    ];
+
+    // 根据答案计算匹配的男友（多数决）
+    function calculateMatch(selectedMatches) {
+        const freq = {};
+        for (let name of selectedMatches) {
+            freq[name] = (freq[name] || 0) + 1;
+        }
+        let maxCount = 0;
+        let maxName = null;
+        for (let [name, count] of Object.entries(freq)) {
+            if (count > maxCount) {
+                maxCount = count;
+                maxName = name;
+            }
+        }
+        // 如果平局或没有，随机选一个（但一般不会）
+        if (!maxName) maxName = "Sion";
+        return boyfriends.find(b => b.name === maxName) || boyfriends[0];
+    }
+
+    // 渲染问题界面
+    let currentView = 'quiz'; // 'quiz' or 'result'
+    let selectedOptions = []; // 存储每个问题选中的选项对象
+
+    function renderQuiz() {
+        let html = `
+            <h1>🔮 测测谁是你的 K-pop 男友 🔮</h1>
+            <div class="sub">（内含黑色幽默，慎点！）</div>
+            <form id="quizForm">
+        `;
+        questions.forEach((q, idx) => {
+            html += `<div class="question"><h3>${q.text}</h3>`;
+            q.options.forEach((opt, optIdx) => {
+                const checkedAttr = (selectedOptions[idx] && selectedOptions[idx].text === opt.text) ? 'checked' : '';
+                html += `
+                    <label class="option">
+                        <input type="radio" name="q${idx}" value="${opt.text}" data-match="${opt.match}" ${checkedAttr} required>
+                        ${opt.text}
+                    </label>
+                `;
+            });
+            html += `</div>`;
+        });
+        html += `<button type="submit" class="btn">✨ 揭露命运 ✨</button>
+                 <footer>⚠️ 纯属娱乐，请勿当真，笑一笑就好 ⚠️</footer></form>`;
+        document.getElementById('app').innerHTML = html;
+        
+        // 绑定表单提交事件
+        const form = document.getElementById('quizForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // 收集选中的匹配名
+            const matches = [];
+            for (let i = 0; i < questions.length; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    alert("请回答所有问题哦~");
+                    return;
+                }
+                const matchName = selected.getAttribute('data-match');
+                matches.push(matchName);
+                // 保存选中状态
+                if (!selectedOptions[i]) selectedOptions[i] = {};
+                selectedOptions[i].text = selected.value;
+            }
+            const result = calculateMatch(matches);
+            renderResult(result);
+        });
+    }
+
+    function renderResult(boy) {
+        let html = `
+            <div class="result-card">
+                <h1>🎉 你的K-pop男友是 🎉</h1>
+                <h2>${boy.name}</h2>
+                <div class="group-badge">${boy.group}</div>
+                <div class="desc">${boy.desc}</div>
+                <button class="btn retry" id="retryBtn">🔄 再测一次 🔄</button>
+                <div class="warning">⚠️ 如有雷同，纯属你倒霉，不接受售后服务 ⚠️</div>
+                <footer>分享给朋友，看看谁更惨</footer>
+            </div>
+        `;
+        document.getElementById('app').innerHTML = html;
+        document.getElementById('retryBtn').addEventListener('click', () => {
+            selectedOptions = [];
+            renderQuiz();
+        });
+    }
+
+    // 启动应用
+    renderQuiz();
+</script>
+</body>
+</html>
