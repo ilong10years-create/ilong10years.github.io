@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>🔮 K-pop 男友测试 🔮</title>
+    <title>🔮 K-pop 男友终极测试｜内含彩蛋🔮</title>
     <style>
         * {
             margin: 0;
@@ -11,334 +11,402 @@
             box-sizing: border-box;
         }
         body {
-            background: linear-gradient(145deg, #f9eef7 0%, #fce4ec 100%);
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #f8e1f4 0%, #f9c9e2 100%);
+            font-family: 'Segoe UI', 'Comic Neue', 'Poppins', system-ui, sans-serif;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
         }
-        .quiz-container {
-            max-width: 650px;
+        .quiz-card {
+            max-width: 750px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.96);
             border-radius: 48px;
-            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.2);
-            padding: 2rem 1.8rem;
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .quiz-panel, .result-panel {
+            padding: 30px 25px 40px;
         }
         h1 {
+            font-size: 1.8rem;
             text-align: center;
-            font-size: 1.9rem;
-            color: #d63384;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            color: #b33b6e;
+            margin-bottom: 10px;
         }
         .sub {
             text-align: center;
-            color: #b56576;
+            color: #a55a7a;
+            margin-bottom: 30px;
             font-style: italic;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
         }
         .question {
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #ffcdd2;
-            padding-bottom: 1.2rem;
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #ffb6c1;
+            padding-bottom: 20px;
         }
         .question h3 {
+            color: #c44c7c;
+            margin-bottom: 15px;
             font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #2d3e50;
         }
         .option {
             display: block;
-            background: #fef2f2;
-            margin: 0.6rem 0;
-            padding: 0.8rem 1rem;
+            background: #fff0f5;
+            margin: 10px 0;
+            padding: 12px 16px;
             border-radius: 60px;
             cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid #ffcdd2;
+            transition: 0.2s;
+            border: 1px solid #ffccdd;
             font-weight: 500;
         }
         .option:hover {
-            background: #ffe0e7;
-            transform: scale(1.01);
+            background: #ffe0ed;
+            transform: translateX(5px);
         }
         input[type="radio"] {
             margin-right: 12px;
-            transform: scale(1.1);
-            accent-color: #d63384;
+            transform: scale(1.2);
+            accent-color: #d46b9e;
         }
-        .btn {
+        .submit-btn {
             display: block;
-            width: 80%;
-            margin: 2rem auto 0;
-            background: #d63384;
+            width: 220px;
+            margin: 30px auto 0;
+            background: linear-gradient(95deg, #e86ca5, #b34572);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 14px 20px;
             border-radius: 60px;
             font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: 0.2s;
             text-align: center;
         }
-        .btn:hover {
-            background: #b02a6e;
+        .submit-btn:hover {
             transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(180,70,120,0.4);
         }
         .result-card {
             text-align: center;
         }
-        .result-card h2 {
-            font-size: 2rem;
-            color: #d63384;
-            margin: 0.5rem 0;
-        }
-        .group-badge {
-            background: #f0c4d3;
-            display: inline-block;
-            padding: 4px 16px;
-            border-radius: 40px;
-            font-size: 0.9rem;
+        .result-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #b33b6e;
             margin: 10px 0;
         }
-        .desc {
-            font-size: 1.1rem;
+        .result-group {
+            font-size: 1.2rem;
+            color: #aa6f8c;
+            margin-bottom: 20px;
+        }
+        .result-desc {
             background: #fff0f5;
-            padding: 1rem;
-            border-radius: 28px;
-            margin: 1rem 0;
-            color: #3b2e3e;
+            padding: 20px;
+            border-radius: 30px;
+            margin: 20px 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #4a2e3a;
+            text-align: left;
+        }
+        .easter-egg {
+            background: #ffe8b6;
+            color: #b45f1b;
+            padding: 15px;
+            border-radius: 40px;
+            font-weight: bold;
+            margin: 15px 0;
+            font-size: 1.1rem;
+            border-left: 8px solid #ffa500;
         }
         .warning {
-            font-size: 0.75rem;
-            color: #a0a0a0;
-            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #b38b9b;
+            margin-top: 20px;
         }
-        .retry {
-            background: #6c757d;
-            margin-top: 1rem;
-        }
-        .retry:hover {
-            background: #565e64;
+        .retry-btn {
+            display: inline-block;
+            background: #c95a88;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
         }
         footer {
             text-align: center;
-            margin-top: 2rem;
             font-size: 0.7rem;
-            color: #b89a9a;
+            padding: 15px;
+            background: #ffeef4;
+            color: #b2859b;
         }
-        @media (max-width: 500px) {
-            .quiz-container {
-                padding: 1.5rem;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-            .question h3 {
-                font-size: 1.1rem;
-            }
+        @media (max-width: 550px) {
+            .quiz-panel, .result-panel { padding: 20px; }
+            h1 { font-size: 1.5rem; }
+            .result-name { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-<div class="quiz-container" id="app">
-    <!-- 动态内容由vue或原生js渲染，这里用原生js -->
+<div class="quiz-card" id="app">
+    <div id="quizPanel" class="quiz-panel">
+        <h1>💖 谁是你的 K-pop 男友？ 💖</h1>
+        <div class="sub">（内含黑色幽默 & 神秘彩蛋，心脏弱者慎入）</div>
+        <form id="quizForm"></form>
+        <button class="submit-btn" id="submitBtn">✨ 揭露命运 ✨</button>
+    </div>
+
+    <div id="resultPanel" class="result-panel" style="display:none;">
+        <div class="result-card">
+            <h1>🎉 你的专属男友 🎉</h1>
+            <div id="easterEggContainer" style="min-height: 0;"></div>
+            <div class="result-name" id="resultName"></div>
+            <div class="result-group" id="resultGroup"></div>
+            <div class="result-desc" id="resultDesc"></div>
+            <div class="warning">⚠️ 本测试纯属娱乐，如有雷同纯属你倒霉 ⚠️</div>
+            <button class="retry-btn" id="retryBtn">再测一次</button>
+        </div>
+    </div>
+    <footer>❤️ 测着玩，别当真 | 包含 NCT WISH, BIGBANG, EXO, TREASURE 全员 + 神秘彩蛋</footer>
 </div>
 
 <script>
-    // ---------- 所有男友数据 ----------
-    const boyfriends = [
-        // NCT WISH (6人)
-        { name: "Sion", group: "NCT WISH", desc: "温柔如水的队长，但会半夜给你发冷笑话，你只能尬笑。" },
-        { name: "Riku", group: "NCT WISH", desc: "运动全能，第一次约会带你跑5公里，你差点报警。" },
-        { name: "Yushi", group: "NCT WISH", desc: "时尚达人，强行帮你搭配衣服，最后你像个彩虹糖。" },
-        { name: "Jaehee", group: "NCT WISH", desc: "厨艺大师，但只会做拉面，连吃一周你开始怀念泡面。" },
-        { name: "Ryo", group: "NCT WISH", desc: "游戏宅，为了打排位忘记约会，你怒删他游戏账号。" },
-        { name: "Sakuya", group: "NCT WISH", desc: "猫奴，你吃醋猫比你还受宠，他让你学猫叫。" },
-        // BIGBANG (5人)
-        { name: "G-Dragon", group: "BIGBANG", desc: "时尚教父，你的工资全用来买他同款，月底吃土。" },
-        { name: "T.O.P", group: "BIGBANG", desc: "艺术收藏家，家里全是奇怪艺术品，你去他家以为进了博物馆。" },
-        { name: "Taeyang", group: "BIGBANG", desc: "浪漫情歌王，但唱歌跑调，邻居投诉噪音。" },
-        { name: "Daesung", group: "BIGBANG", desc: "开心果，笑点低到地板，你讲冷笑话他能笑三天。" },
-        { name: "Seungri", group: "BIGBANG", desc: "（平行宇宙版）商业天才，但总想拉你投资微商。" },
-        // EXO (9人)
-        { name: "Xiumin", group: "EXO", desc: "童颜大哥，去酒吧被查身份证，你被当成他姐姐。" },
-        { name: "Suho", group: "EXO", desc: "富二代，但抠门到约会吃路边摊，还让你AA。" },
-        { name: "Lay", group: "EXO", desc: "工作狂，恋爱全靠视频通话，你像跟手机谈恋爱。" },
-        { name: "Baekhyun", group: "EXO", desc: "话痨，你耳朵起茧，分手后你反而觉得世界太安静。" },
-        { name: "Chen", group: "EXO", desc: "好爸爸型，但强迫你学习带娃技巧，你连夜逃跑。" },
-        { name: "Chanyeol", group: "EXO", desc: "身高差巨大，亲亲需要踩小板凳，你颈椎病加重。" },
-        { name: "D.O.", group: "EXO", desc: "厨艺大师，但禁止你进厨房，你失去了煮泡面的快乐。" },
-        { name: "Kai", group: "EXO", desc: "舞王，约会就是陪他练舞，你累到瘫痪。" },
-        { name: "Sehun", group: "EXO", desc: "傲娇毒舌，嘴上嫌弃你，实则偷偷看你手机。" },
-        // TREASURE (12人)
-        { name: "Choi Hyunsuk", group: "TREASURE", desc: "控制欲极强，你几点睡觉都要管，你失去自由。" },
-        { name: "Park Jihoon", group: "TREASURE", desc: "爱哭鬼，你随便一句话他就哭，你成安慰专家。" },
-        { name: "Yoshi", group: "TREASURE", desc: "日本武士风，带你吃寿司，但芥末放超多。" },
-        { name: "Kim Junkyu", group: "TREASURE", desc: "呆萌路痴，出门永远你导航，他像个孩子。" },
-        { name: "Mashiho", group: "TREASURE", desc: "元气少年，早上6点叫你晨跑，你恨闹钟。" },
-        { name: "Yoon Jaehyuk", group: "TREASURE", desc: "自拍狂魔，你丑照被他发网上，你社死。" },
-        { name: "Asahi", group: "TREASURE", desc: "艺术家，家里颜料满地，你的白衣服遭殃。" },
-        { name: "Bang Yedam", group: "TREASURE", desc: "音乐天才，但写的歌全是分手主题，你心虚。" },
-        { name: "Kim Doyoung", group: "TREASURE", desc: "撒娇怪，你鸡皮疙瘩掉一地，朋友以为你养了只猫。" },
-        { name: "Haruto", group: "TREASURE", desc: "低音炮，说情话像念咒，你忍不住笑场。" },
-        { name: "Park Jeongwoo", group: "TREASURE", desc: "吃货，你工资全用来买零食，月月光。" },
-        { name: "So Junghwan", group: "TREASURE", desc: "幼稚鬼，抢你冰淇淋还吐舌头，你想打人。" }
-    ];
+    // ---------- 所有男友（32位）丰富描述 ----------
+    const boyfriends = {
+        // NCT WISH
+        "Sion": { group: "NCT WISH", desc: "温柔如水，但会半夜给你发冷笑话，笑点-10086。他的优点是脾气好，缺点是脾气好到被欺负也只会傻笑。你生气时他递奶茶，你感动时他放屁……" },
+        "Riku": { group: "NCT WISH", desc: "运动全能，约会项目是让你陪他跑马拉松，还嫌弃你慢。跑完还会拉你去做引体向上，说‘为了你好’。你的肌肉涨了，爱情没了。" },
+        "Yushi": { group: "NCT WISH", desc: "时尚达人，你的衣柜会被他彻底改造，最后只剩渔网袜和亮片西装。他坚信‘丑到极致就是潮’，而你成了街头最闪的神经病。" },
+        "Jaehee": { group: "NCT WISH", desc: "厨艺大师，但只会做拉面，而且不放调料包。他管那叫‘原生态健康餐’，你吃完怀疑人生，他还问你‘要不要再来一碗’。" },
+        "Ryo": { group: "NCT WISH", desc: "游戏宅，会为了打游戏忘记约会，还说‘再赢一局就出门’。你打电话他秒挂，理由是‘别坑我队友’。分手时他送你一套限定皮肤。" },
+        "Sakuya": { group: "NCT WISH", desc: "猫奴，你只能排第二，他的猫会挠你沙发。他给猫买高级罐头，给你买临期泡面。你问‘猫和我谁重要？’他答‘猫会抓老鼠，你会吗？’" },
+        // BIGBANG
+        "G-Dragon": { group: "BIGBANG", desc: "时尚教父，你的钱包会被他掏空，还会嫌你土。他送你一只限量版缺胳膊的玩偶，你感动哭了——其实是贵哭的。分手后你欠了花呗。" },
+        "T.O.P": { group: "BIGBANG", desc: "艺术爱好者，家里堆满奇怪收藏品，包括一个等身外星人模型。他半夜会对着模型说话，你以为是鬼，结果是他在念自己写的诗。" },
+        "Taeyang": { group: "BIGBANG", desc: "浪漫情歌王子，但唱歌时邻居会报警投诉噪音。他边唱边流泪，你以为他深情，其实是邻居扔了鸡蛋砸的。" },
+        "Daesung": { group: "BIGBANG", desc: "开心果，笑点低到地板，连你摔跤他都能笑半小时。你骨折了他还笑，护士以为他是你仇人。优点是永远不会冷战，因为他一看到你就笑场。" },
+        "Seungri": { group: "BIGBANG", desc: "（平行宇宙守法版）开烤肉店，但每次都要你买单。他振振有词：‘我的钱要用来研发新菜单，你的钱用来吃饭，合理。’ 你怀疑他是传销头子。" },
+        // EXO
+        "Xiumin": { group: "EXO", desc: "童颜大哥，去酒吧被查身份证，然后被赶出来。他委屈巴巴地说‘我都30了’，保安以为他撒谎。你每次合照都像他姐姐。" },
+        "Suho": { group: "EXO", desc: "富二代，但小气得要命，约会只请吃路边摊。他美其名曰‘忆苦思甜’，你吃完拉肚子，他说‘排毒养颜’。" },
+        "Lay": { group: "EXO", desc: "工作狂，你只能视频通话，还经常黑屏。你生日他送你一个‘奋斗’字画，说‘我们一起努力’。你努力把他拉黑。" },
+        "Baekhyun": { group: "EXO", desc: "话痨，你耳朵会起茧，连做梦都是他的声音。他能从宇宙大爆炸聊到你昨晚的袜子颜色，你戴上耳塞他直接手语。" },
+        "Chen": { group: "EXO", desc: "好爸爸，但会强迫你给孩子换尿布，还说你笨手笨脚。他给孩子唱摇篮曲，孩子哭得更凶，因为跑调。" },
+        "Chanyeol": { group: "EXO", desc: "身高差太大，亲亲需要小板凳，他还不愿意弯腰。你踮脚抽筋，他低头颈椎病，最后你们分手是因为身高不适合接吻。" },
+        "D.O.": { group: "EXO", desc: "厨艺满分，但禁止你进厨房，说你炸厨房专业户。你做糊了一锅粥，他拍照发ins：‘艺术’。你被网友骂了三天。" },
+        "Kai": { group: "EXO", desc: "舞王，约会就是陪他练舞，你扭到腰他还在笑。他教你地板动作，你头撞肿了，他说‘这是街舞的代价’。" },
+        "Sehun": { group: "EXO", desc: "傲娇鬼，嘴上嫌弃实则粘人，但嫌弃起来真要命。你穿新裙子他撇嘴‘像窗帘’，你生气了他偷偷亲你。" },
+        // TREASURE
+        "Choi Hyunsuk": { group: "TREASURE", desc: "队长，控制欲强到管你几点睡觉，还查你手机。你晚回消息他就连环call，你拉黑他，他用队友手机继续打。" },
+        "Park Jihoon": { group: "TREASURE", desc: "可爱担当，但爱哭，连你忘记回消息都能哭一小时。你道歉他哭更凶，你哄他他边哭边笑，你怀疑他表演系毕业。" },
+        "Yoshi": { group: "TREASURE", desc: "日本武士风，带你吃寿司，但芥末放超多。你呛到流泪，他严肃说‘武士不惧辛辣’。你辣晕了，他给你切腹（不是）。" },
+        "Kim Junkyu": { group: "TREASURE", desc: "呆萌，经常迷路，约会时间全花在找路上。你导航他跟着走错，最后你们去了反方向的网吧。" },
+        "Mashiho": { group: "TREASURE", desc: "元气少年，早上6点叫你起床跑步，你起不来就掀被子。你顶着黑眼圈跑，他喊‘加油’，你心里想‘加油揍你’。" },
+        "Yoon Jaehyuk": { group: "TREASURE", desc: "自拍达人，你的丑照会被他发网上，还配文‘我的宝’。你被网友嘲笑，他得意‘只有我见过真实的你’。" },
+        "Asahi": { group: "TREASURE", desc: "艺术家，家里颜料满地，你的白裙子变成彩虹裙。他夸‘这是行为艺术’，你哭着说‘这是毁容’。" },
+        "Bang Yedam": { group: "TREASURE", desc: "音乐天才，但只会写分手歌，每次吵架都给你写一首。你听到前奏就头皮发麻，最后你主动求和只为不听新歌。" },
+        "Kim Doyoung": { group: "TREASURE", desc: "撒娇怪，你鸡皮疙瘩掉一地，他还不肯停。你求他正常说话，他撒娇‘人家哪里不正常嘛～’，你晕倒。" },
+        "Haruto": { group: "TREASURE", desc: "低音炮，说情话像在念咒语，你听完只想逃。他认真问‘你愿意和我一起沉沦吗？’你答‘我选择报警’。" },
+        "Park Jeongwoo": { group: "TREASURE", desc: "吃货，你工资都用来买零食，他还嫌不够。你减肥他往你嘴里塞炸鸡，说‘胖点可爱’，你胖了他说‘该减肥了’。" },
+        "So Junghwan": { group: "TREASURE", desc: "忙内，幼稚到抢你冰淇淋，还得意洋洋。你看动画片他抢遥控器，你看韩剧他吐槽男主丑。你怀疑你养了个儿子。" }
+    };
 
-    // 问题列表（5个有趣问题）
+    // ---------- 新增问题至10个 ----------
     const questions = [
-        {
-            text: "周末你最喜欢？",
-            options: [
-                { text: "躺尸刷剧吃零食", match: "Yoshi" },
-                { text: "去健身房暴汗", match: "Riku" },
-                { text: "逛美术馆装文青", match: "T.O.P" },
-                { text: "夜店蹦迪到天亮", match: "G-Dragon" },
-                { text: "打游戏通宵", match: "Ryo" }
-            ]
-        },
-        {
-            text: "理想约会地点？",
-            options: [
-                { text: "高级米其林餐厅", match: "Suho" },
-                { text: "海边漫步", match: "Taeyang" },
-                { text: "游乐园疯玩", match: "Mashiho" },
-                { text: "家里窝着", match: "Kai" },
-                { text: "录音室创作", match: "Bang Yedam" }
-            ]
-        },
-        {
-            text: "最受不了对方什么？",
-            options: [
-                { text: "控制欲太强", match: "Choi Hyunsuk" },
-                { text: "太粘人", match: "Kim Doyoung" },
-                { text: "工作狂", match: "Lay" },
-                { text: "幼稚", match: "So Junghwan" },
-                { text: "爱哭", match: "Park Jihoon" }
-            ]
-        },
-        {
-            text: "最爱看哪种电影？",
-            options: [
-                { text: "恐怖片", match: "Asahi" },
-                { text: "喜剧片", match: "Daesung" },
-                { text: "爱情片", match: "Chen" },
-                { text: "科幻片", match: "Haruto" },
-                { text: "纪录片", match: "Jaehee" }
-            ]
-        },
-        {
-            text: "你的理想型外貌？",
-            options: [
-                { text: "可爱童颜", match: "Xiumin" },
-                { text: "高冷模特脸", match: "Sehun" },
-                { text: "阳光运动型", match: "Chanyeol" },
-                { text: "温柔暖男", match: "Sion" },
-                { text: "混血异域风", match: "Yushi" }
-            ]
-        }
+        { text: "你周末最喜欢做什么？", options: [
+            { text: "在家躺尸，刷剧吃零食", match: "Yoshi" },
+            { text: "去健身房挥汗如雨", match: "Riku" },
+            { text: "逛美术馆/看展", match: "T.O.P" },
+            { text: "蹦迪到天亮", match: "G-Dragon" },
+            { text: "和朋友一起打游戏", match: "Ryo" }
+        ]},
+        { text: "你理想的约会地点是？", options: [
+            { text: "高级餐厅", match: "Suho" },
+            { text: "海边散步", match: "Taeyang" },
+            { text: "游乐园", match: "Mashiho" },
+            { text: "家里打游戏", match: "Kai" },
+            { text: "录音室", match: "Bang Yedam" }
+        ]},
+        { text: "你最受不了对方什么？", options: [
+            { text: "控制欲太强", match: "Choi Hyunsuk" },
+            { text: "太粘人", match: "Kim Doyoung" },
+            { text: "工作狂", match: "Lay" },
+            { text: "太幼稚", match: "So Junghwan" },
+            { text: "爱哭", match: "Park Jihoon" }
+        ]},
+        { text: "你最喜欢的电影类型？", options: [
+            { text: "恐怖片", match: "Asahi" },
+            { text: "喜剧片", match: "Daesung" },
+            { text: "爱情片", match: "Chen" },
+            { text: "科幻片", match: "Haruto" },
+            { text: "纪录片", match: "Jaehee" }
+        ]},
+        { text: "你的理想型外貌特征是？", options: [
+            { text: "可爱童颜", match: "Xiumin" },
+            { text: "高冷模特脸", match: "Sehun" },
+            { text: "阳光运动型", match: "Chanyeol" },
+            { text: "温柔暖男", match: "Sion" },
+            { text: "异国风情", match: "Yushi" }
+        ]},
+        { text: "你更看重男生的什么能力？", options: [
+            { text: "厨艺", match: "D.O." },
+            { text: "赚钱能力", match: "Seungri" },
+            { text: "音乐才华", match: "Baekhyun" },
+            { text: "幽默感", match: "Daesung" },
+            { text: "运动神经", match: "Riku" }
+        ]},
+        { text: "如果你养宠物，你会养？", options: [
+            { text: "猫", match: "Sakuya" },
+            { text: "狗", match: "Park Jeongwoo" },
+            { text: "仓鼠", match: "Kim Junkyu" },
+            { text: "蛇", match: "Asahi" },
+            { text: "不养宠物", match: "Yoon Jaehyuk" }
+        ]},
+        // 新增第8题
+        { text: "你最讨厌哪种行为？", options: [
+            { text: "抠门", match: "Suho" },
+            { text: "话多", match: "Baekhyun" },
+            { text: "迟到", match: "Haruto" },
+            { text: "炫富", match: "Seungri" },
+            { text: "装可爱", match: "Park Jihoon" }
+        ]},
+        // 新增第9题
+        { text: "你希望男友有什么超能力？", options: [
+            { text: "瞬间移动", match: "Riku" },
+            { text: "读心术", match: "Sion" },
+            { text: "长生不老", match: "Xiumin" },
+            { text: "点石成金", match: "G-Dragon" },
+            { text: "隐身", match: "Asahi" }
+        ]},
+        // 新增第10题
+        { text: "你觉得自己是什么类型的女生？", options: [
+            { text: "御姐", match: "Choi Hyunsuk" },
+            { text: "软妹", match: "Yushi" },
+            { text: "神经质", match: "Daesung" },
+            { text: "学霸", match: "Bang Yedam" },
+            { text: "吃货", match: "Park Jeongwoo" }
+        ]}
     ];
 
-    // 根据答案计算匹配的男友（多数决）
-    function calculateMatch(selectedMatches) {
-        const freq = {};
-        for (let name of selectedMatches) {
-            freq[name] = (freq[name] || 0) + 1;
+    let userName = "";
+    let easterEgg = false;
+
+    // 询问名字（页面加载时）
+    (function askName() {
+        let inputName = prompt("✨ 测试开始前，请告诉我你的名字（昵称即可）：", "");
+        if (inputName === null || inputName.trim() === "") {
+            userName = "神秘人";
+        } else {
+            userName = inputName.trim();
         }
-        let maxCount = 0;
-        let maxName = null;
+        // 彩蛋：如果名字是“朱诗琪”（不区分大小写，去除空格）
+        if (userName === "朱诗琪" || userName.toLowerCase() === "朱诗琪") {
+            easterEgg = true;
+        }
+    })();
+
+    function renderQuiz() {
+        const form = document.getElementById('quizForm');
+        form.innerHTML = '';
+        questions.forEach((q, idx) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question';
+            qDiv.innerHTML = `<h3>${idx+1}. ${q.text}</h3>`;
+            q.options.forEach(opt => {
+                const label = document.createElement('label');
+                label.className = 'option';
+                label.innerHTML = `<input type="radio" name="q${idx}" value="${opt.match}" required> ${opt.text}`;
+                form.appendChild(label);
+            });
+            form.appendChild(qDiv);
+        });
+    }
+
+    function computeResult() {
+        const form = document.getElementById('quizForm');
+        const selected = [];
+        for (let i = 0; i < questions.length; i++) {
+            const radios = form.querySelectorAll(`input[name="q${i}"]`);
+            let found = null;
+            for (let r of radios) {
+                if (r.checked) {
+                    found = r.value;
+                    break;
+                }
+            }
+            if (!found) return null;
+            selected.push(found);
+        }
+        const freq = {};
+        selected.forEach(name => { freq[name] = (freq[name] || 0) + 1; });
+        let maxCount = 0, maxName = null;
         for (let [name, count] of Object.entries(freq)) {
             if (count > maxCount) {
                 maxCount = count;
                 maxName = name;
             }
         }
-        // 如果平局或没有，随机选一个（但一般不会）
-        if (!maxName) maxName = "Sion";
-        return boyfriends.find(b => b.name === maxName) || boyfriends[0];
+        return maxName;
     }
 
-    // 渲染问题界面
-    let currentView = 'quiz'; // 'quiz' or 'result'
-    let selectedOptions = []; // 存储每个问题选中的选项对象
-
-    function renderQuiz() {
-        let html = `
-            <h1>🔮 测测谁是你的 K-pop 男友 🔮</h1>
-            <div class="sub">（内含黑色幽默，慎点！）</div>
-            <form id="quizForm">
-        `;
-        questions.forEach((q, idx) => {
-            html += `<div class="question"><h3>${q.text}</h3>`;
-            q.options.forEach((opt, optIdx) => {
-                const checkedAttr = (selectedOptions[idx] && selectedOptions[idx].text === opt.text) ? 'checked' : '';
-                html += `
-                    <label class="option">
-                        <input type="radio" name="q${idx}" value="${opt.text}" data-match="${opt.match}" ${checkedAttr} required>
-                        ${opt.text}
-                    </label>
-                `;
-            });
-            html += `</div>`;
-        });
-        html += `<button type="submit" class="btn">✨ 揭露命运 ✨</button>
-                 <footer>⚠️ 纯属娱乐，请勿当真，笑一笑就好 ⚠️</footer></form>`;
-        document.getElementById('app').innerHTML = html;
+    function showResult(boyName) {
+        const boy = boyfriends[boyName];
+        const resultNameEl = document.getElementById('resultName');
+        const resultGroupEl = document.getElementById('resultGroup');
+        const resultDescEl = document.getElementById('resultDesc');
+        const easterContainer = document.getElementById('easterEggContainer');
         
-        // 绑定表单提交事件
-        const form = document.getElementById('quizForm');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // 收集选中的匹配名
-            const matches = [];
-            for (let i = 0; i < questions.length; i++) {
-                const selected = document.querySelector(`input[name="q${i}"]:checked`);
-                if (!selected) {
-                    alert("请回答所有问题哦~");
-                    return;
-                }
-                const matchName = selected.getAttribute('data-match');
-                matches.push(matchName);
-                // 保存选中状态
-                if (!selectedOptions[i]) selectedOptions[i] = {};
-                selectedOptions[i].text = selected.value;
-            }
-            const result = calculateMatch(matches);
-            renderResult(result);
-        });
+        if (!boy) {
+            resultNameEl.innerText = boyName || "某个神秘人";
+            resultGroupEl.innerText = "??";
+            resultDescEl.innerText = "这位男友从数据库逃跑了，再测一次吧。";
+        } else {
+            resultNameEl.innerText = boyName;
+            resultGroupEl.innerText = boy.group;
+            resultDescEl.innerHTML = boy.desc;
+        }
+        
+        // 彩蛋显示
+        if (easterEgg) {
+            easterContainer.innerHTML = `<div class="easter-egg">✨ 特别提示 ✨<br>不管测试结果如何，您的爱侣始终是 <strong>吴时温</strong>！<br>（测试结果仅供娱乐，命运早已注定）</div>`;
+        } else {
+            easterContainer.innerHTML = '';
+        }
+        
+        document.getElementById('quizPanel').style.display = 'none';
+        document.getElementById('resultPanel').style.display = 'block';
     }
 
-    function renderResult(boy) {
-        let html = `
-            <div class="result-card">
-                <h1>🎉 你的K-pop男友是 🎉</h1>
-                <h2>${boy.name}</h2>
-                <div class="group-badge">${boy.group}</div>
-                <div class="desc">${boy.desc}</div>
-                <button class="btn retry" id="retryBtn">🔄 再测一次 🔄</button>
-                <div class="warning">⚠️ 如有雷同，纯属你倒霉，不接受售后服务 ⚠️</div>
-                <footer>分享给朋友，看看谁更惨</footer>
-            </div>
-        `;
-        document.getElementById('app').innerHTML = html;
-        document.getElementById('retryBtn').addEventListener('click', () => {
-            selectedOptions = [];
-            renderQuiz();
-        });
+    function resetQuiz() {
+        document.getElementById('quizForm').reset();
+        document.getElementById('quizPanel').style.display = 'block';
+        document.getElementById('resultPanel').style.display = 'none';
+        window.scrollTo(0, 0);
     }
 
-    // 启动应用
+    document.getElementById('submitBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        const resultName = computeResult();
+        if (!resultName) {
+            alert("请回答所有问题，命运不容逃避！");
+            return;
+        }
+        showResult(resultName);
+    });
+    document.getElementById('retryBtn').addEventListener('click', function() {
+        resetQuiz();
+    });
+
     renderQuiz();
 </script>
 </body>
